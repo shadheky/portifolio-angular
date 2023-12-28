@@ -1,0 +1,51 @@
+.imagem-tecnologia {
+    width: 60px;
+    height: 60px;
+    padding: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: 1px solid #383838;
+    margin-right: 10px;
+    border-radius: 8px;
+    transition: .3s;
+    margin-bottom: 12px;
+}
+
+.img-detalhes-container {
+    display: flex;
+    justify-content: center;
+}
+
+.imagem-tecnologia:hover {
+    transform: translateY(-10px);
+}
+
+.imagens-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.img-tecnologia-detalhes {
+    width: 200px;
+    height: 200px;
+    animation: aparicao 1s;
+    
+}
+
+.min-heigth {
+    min-height: 44vh;
+}
+
+@keyframes aparicao {
+    from {
+        height: 0px;
+        width: 0px;
+      }
+    
+      to {
+        height: 200px;
+        width: 200px;
+      }
+}

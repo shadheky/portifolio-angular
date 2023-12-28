@@ -1,0 +1,30 @@
+<div class="projeto-wrapper">
+  <span class="text-light voltar" [routerLink]="['/']">Voltar</span>
+  <div id="menu" class="container">
+    <ul class="opcoes"> 
+      <li class="opcao-selecionada" (click)="irParaAbaProjetos($event)">Projeto</li>
+      <li class="" (click)="irParaAbaTecnologias($event)">Tecnologias</li>
+    </ul>
+  </div>
+
+  <div class="container" *ngIf="projeto && estado.projeto">
+    <div class="card-projeto text-light row">
+      <div id="projeto" class="col-lg-6">
+        <h1>{{ projeto.name }}</h1>
+        <p class="descricao-projeto">{{ projeto.description }}</p>
+
+        <a [href]="projeto.projectUrl" class="botao-link">Veja de perto <i class="bi bi-arrow-right-short"></i></a>
+      </div>
+      <div class="col-lg-6 d-flex justify-content-end">
+        <img class="projeto-img img-fluid" [src]="projeto.imageURL" alt="">
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="container tecnologias-container" *ngIf="estado.tecnologias">
+    <app-tecnologias-scrollbar [tecnologias]="projeto!.technologys"></app-tecnologias-scrollbar>
+  </div>
+
+</div>

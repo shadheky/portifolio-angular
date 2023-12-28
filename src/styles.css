@@ -1,0 +1,22 @@
+
+body {
+    margin: 0px;
+    padding: 0;
+    height: 100%;
+}
+
+html {
+    height: 100%;
+    margin: 0px;
+    padding: 0;
+}
+
+html::-webkit-scrollbar {
+    width: 2px;
+    background-color: black;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: #888;
+}
+

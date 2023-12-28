@@ -1,0 +1,67 @@
+#projetos-container {
+    min-height: 100VH;
+    background-color: #121214;
+    color: white;
+
+}
+
+.projetos-content {
+    padding: 30px 0px;
+    
+}
+
+.projetos-content h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.card {
+    min-height:30vh;
+    background-color: #09090A;
+    border: 1px solid #222;
+}
+
+.card-body {
+    position: relative;
+
+}
+
+.card h3 {
+    font-size: 25px;
+}
+
+.col-md-6 {
+    display: flex;
+    justify-content: center;
+}
+
+i {
+    cursor: pointer;
+}
+
+.projeto-img {
+    
+    border-radius: 10px;
+    margin-bottom: 30px;
+
+}
+
+.technology-icons {
+    display: inline;
+    margin-right: 5px;
+    padding: 5px;
+    width: 28px;
+    height: 28px;
+}
+
+.detalhes-button {
+    width: 100%;
+    margin: 10px 0px;
+}
+
+@media (min-width:500px) {
+    .projeto-img {
+        width: 100% !important;
+        height: 250px !important;
+    }
+}

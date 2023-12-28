@@ -1,0 +1,106 @@
+
+
+.projeto-wrapper {
+    background: rgb(0,0,0);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 25%, rgba(26,18,51,1) 58%, rgba(12,0,52,1) 86%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 30px;
+    overflow: hidden;
+}
+#menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.opcoes {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    font-size: 20px;
+    color: #fff;
+    padding: 0;
+}
+
+.opcao-selecionada {
+    border-bottom: 1px solid #efefef !important;
+}
+
+.opcoes li {
+    cursor: pointer;
+    transition: .5s;
+    border-bottom: 1px solid transparent;
+}
+
+
+.card-projeto {
+    padding: 40px 10px;
+    border-radius: 10px;
+    animation-duration: .8s;
+    animation-name: sliderigth;
+}
+
+.projeto-img {
+    border-radius: 8px;
+}
+
+.descricao-projeto {
+    min-height: 70%;
+}
+
+.botao-link {
+    color: white;
+    background-color: transparent;
+    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: .3s;
+    text-decoration: none;
+    width: 200px;
+}
+
+.botao-link i {
+    font-size: 30px;
+}
+
+.botao-link:hover {
+    background-color: #333;
+    
+}
+
+.opcoes li:hover {
+    border-bottom: 1px solid #ccc;
+}
+
+.tecnologias-container {
+    animation: slideleft .8s;
+    margin-top: 30px;
+}
+
+.voltar {
+    margin-left: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    width: max-content;
+    
+}
+
+
+@keyframes sliderigth {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(0%); }
+}
+
+
+@keyframes slideleft {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0%); }
+}
