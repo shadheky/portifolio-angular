@@ -1,7 +1,7 @@
 <div class="container text-light mb-3" *ngIf="tecnologiaEscolhida">
     <div class="row min-heigth">
-        <div class="col-md-8">
-            <h1   >{{ tecnologiaEscolhida?.name }}</h1>
+        <div class="col-md-8 descricao-tecnologia">
+            <h1   >{{ tecnologiaEscolhida.name }}</h1>
             <p>{{ tecnologiaEscolhida.shortDescription }}</p>
         </div>
         <div class="col-md-4 img-detalhes-container">
@@ -12,8 +12,8 @@
 
 
 <div class="container text-light justify-content-center">      
-    <div class="row">
-        <div class="col-12 imagens-container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-10 imagens-container">
             <img class="img-fluid" [src]="tecnologia.urlImage" class="imagem-tecnologia"  alt="" *ngFor="let tecnologia of tecnologias" (click)="trocarTecnologia(tecnologia)">
         </div>
     </div>

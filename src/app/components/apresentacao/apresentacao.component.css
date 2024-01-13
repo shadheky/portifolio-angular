@@ -40,13 +40,13 @@ a {
 }
 
 .typing-demo {
+  font-size: clamp(10px, 4vw, 32px);
   width: 29ch;
-  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
+  animation: typing 2s steps(29), blink .5s step-end infinite alternate;
   white-space: nowrap;
   overflow: hidden;
-  border-right: 3px solid;
+  border-right: 2px solid;
   font-family: monospace;
-  font-size: 20px;
   font-family: 'Fira Code', monospace;
 }
 

@@ -19,6 +19,9 @@ export class TecnologiasScrollbarComponent {
   }
 
   trocarTecnologia(tecnologia:Technology):void{
+    if(tecnologia.name === this.tecnologiaEscolhida?.name)
+      return;
+    
     this.tecnologiaEscolhida = null
     setTimeout(() => {
       this.tecnologiaEscolhida = tecnologia

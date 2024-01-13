@@ -1,3 +1,8 @@
-<app-apresentacao></app-apresentacao>
+
+<app-menu [activedMenu]="currentMenu"></app-menu>
+<div (scroll)="changeMenu('home', $event)">
+    <app-apresentacao></app-apresentacao>
+</div>
 <app-projetos id="projetos"></app-projetos>
-<app-sobre-mim id="sobre-mim"></app-sobre-mim>
+<app-sobre-mim id="perfil"></app-sobre-mim>
+

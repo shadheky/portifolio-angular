@@ -1,3 +1,7 @@
+.descricao-tecnologia {
+    animation: aparicao-texto 2s;
+}
+
 .imagem-tecnologia {
     width: 60px;
     height: 60px;
@@ -14,6 +18,8 @@
 .img-detalhes-container {
     display: flex;
     justify-content: center;
+   
+   
 }
 
 .imagem-tecnologia:hover {
@@ -22,15 +28,19 @@
 
 .imagens-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
+    align-items: center;
     margin-top: 20px;
+    overflow-x: scroll;
+    height: 100px;
+    height: 100px;
 }
 
 .img-tecnologia-detalhes {
     width: 200px;
     height: 200px;
-    animation: aparicao 1s;
+  
     
 }
 
@@ -38,14 +48,29 @@
     min-height: 44vh;
 }
 
-@keyframes aparicao {
-    from {
-        height: 0px;
-        width: 0px;
-      }
+.imagens-container::-webkit-scrollbar {
+    height: 1px;
     
-      to {
-        height: 200px;
-        width: 200px;
-      }
+}
+
+.imagens-container::-webkit-scrollbar-thumb {
+    height: .1px;
+    background: #fdf8f8;
+}
+
+@media (max-width:500px) {
+    .imagens-container {
+        justify-content: flex-start;
+    }
+}
+
+
+@keyframes aparicao-texto {
+    from {
+        color: transparent;
+    }
+
+    to {
+        color: #fff;
+    }
 }
