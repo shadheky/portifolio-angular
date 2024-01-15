@@ -1,31 +1,51 @@
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-menu',
   standalone: true,
-  imports: [NgIf],
+  imports: [NgIf, NgFor],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'
 })
 export class MenuComponent {
 
-  @Input() activedMenu?:string
+  menuItens:MenuItem[];
   menuIsShowed:boolean = true;
   timeoutFecharMenu:any = null;
   timeoutAnimacao:any = null;
   animationClass = 'slidedown'
 
-  constructor() {}
-  
-  ngOnInit() {
-    this.activedMenu = window.location.href.split('#')[1] ? window.location.href.split('#')[1] : 'home';
-    this.esconderMenu();
-
+  constructor() {
+    this.menuItens = this.menu.getMenuItens();
   }
 
-  trocarMenu(menu: menus) {
-      this.activedMenu = menu;
+  menu:Menu = new Menu([
+    {name:"home", icon:"bi bi-house-door-fill", topMinScroll:0, actived: true},
+    {name:"projetos", icon:"bi bi-card-text", topMinScroll:499, actived:false},
+    {name:"perfil", icon:"bi bi-person-fill", topMinScroll:1299, actived:false}
+    ]);
+  
+  ngOnInit() {
+    this.loadScrollEvent();
+  }
+
+  loadScrollEvent() {
+    fromEvent(document, 'scroll').subscribe(
+      {
+        next: () => {
+          const scrollPosition = document.querySelector('html')!.scrollTop;
+          this.menu.setActivedMenuByTopMinScroll(scrollPosition);
+          this.syncMenuItens();
+        }
+      }
+    );
+  }
+
+  trocarMenu(name:string) {
+      this.menu.setMenuByName(name);
+      this.syncMenuItens();
   }
 
   mostrarMenu() {
@@ -47,11 +67,103 @@ export class MenuComponent {
     }, 1000);
   }
 
-  teste(event:any) {
+  syncMenuItens() {
+    this.menuItens = this.menu.getMenuItens();
+  }
 
+}
+
+interface MenuItem {
+  name:string,
+  icon:string,
+  topMinScroll:number,
+  actived:boolean
+}
+
+class Menu {
+  private menuItens:MenuItem[];
+  constructor(menuItens:MenuItem[]) {
+    this.menuItens = menuItens;
+    this.setMenuToDefault();
+  }
+
+  getCurrentActivedMenu() {
+    for(let elem of this.menuItens) {
+      if(elem.actived)
+        return elem;
+    }
+
+    this.menuItens[0].actived = true;
+    return this.menuItens[0];
+  }
+
+  getMenuItens() {
+    return JSON.parse(JSON.stringify(this.menuItens));
+  }
+
+  setMenuToDefault() {
+    for(let index = 0; index < this.menuItens.length; index++) {
+        this.menuItens[index].actived = false;
+    }
+    this.menuItens[0].actived = true;
+  }
+
+  setMenuByName(name:string) {
+    for(let elem of this.menuItens) {
+      elem.actived = false;
+    }
+
+    for(let elem of this.menuItens) {
+      if( elem.name === name)
+        elem.actived = true;
+    }
+  } 
+
+  setActivedMenuByTopMinScroll(topMinScroll:number){
+    this.orderDescMenuItensByTopMinScroll();    
+    
+    for(let elem of this.menuItens) {
+      elem.actived = false;
+    }
+
+    for(let elem of this.menuItens) {
+      if(elem.topMinScroll <= topMinScroll && !elem.actived){
+        elem.actived = true;        
+        break;
+      }
+    }
+
+
+
+    this.orderAscMenuItensByTopMinScroll();
+  }
+
+  private orderDescMenuItensByTopMinScroll() {
+    this.menuItens.sort(
+      (a, b) => {
+        if(a.topMinScroll > b.topMinScroll)
+          return -1;
+
+        if(a.topMinScroll < b.topMinScroll)
+          return 1;
+
+        return 0;
+      }
+    )
+  }
+
+  private orderAscMenuItensByTopMinScroll() {
+    this.menuItens.sort(
+      (a, b) => {
+        if(a.topMinScroll < b.topMinScroll)
+          return -1;
+
+        if(a.topMinScroll > b.topMinScroll)
+          return 1;
+
+        return 0;
+      }
+    )
   }
 }
 
-
-
-type menus = 'home' | 'projetos' | 'perfil';

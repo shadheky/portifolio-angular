@@ -7,22 +7,10 @@
     class="menu-content text-light bg-dark {{ animationClass }}"
     *ngIf="menuIsShowed"
   >
-    <span>
-      <a href="#" (click)="trocarMenu('home')">
-        <i class="bi bi-house-door-fill"></i>
-        <span [class]="{ active: activedMenu == 'home' }"> </span>
-      </a>
-    </span>
-    <span>
-      <a href="#projetos" (click)="trocarMenu('projetos')">
-        <i class="bi bi-card-text"></i>
-        <span [class]="{ active: activedMenu == 'projetos' }"> </span>
-      </a>
-    </span>
-    <span>
-      <a href="#perfil" (click)="trocarMenu('perfil')">
-        <i class="bi bi-person-fill"></i>
-        <span [class]="{ active: activedMenu == 'perfil' }"> </span>
+    <span *ngFor="let item of menuItens">
+      <a href="#{{item.name}}" (click)="trocarMenu(item.name)">
+        <i [class]="item.icon"></i>
+        <span [class]="{active: item.actived}"> </span>
       </a>
     </span>
   </nav>
