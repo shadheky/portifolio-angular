@@ -58,7 +58,7 @@
     background-color: transparent;
     border-radius: 8px;
     padding: 5px 10px;
-    font-size: 20px;
+    font-size: clamp(8px, 3vw, 18px, 20px);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -69,6 +69,7 @@
 
 .botao-link i {
     font-size: 30px;
+
 }
 
 .botao-link:hover {
@@ -103,4 +104,14 @@
 @keyframes slideleft {
     0% { transform: translateX(-100%); }
     100% { transform: translateX(0%); }
+}
+
+@media (max-width:600px) {
+    .descricao-projeto {
+        min-height: auto;
+    }
+
+    .botao-link {
+        margin-bottom: 20px;
+    }
 }

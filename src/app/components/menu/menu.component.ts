@@ -1,5 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { fromEvent } from 'rxjs';
 
 @Component({
@@ -16,10 +16,18 @@ export class MenuComponent {
   timeoutFecharMenu:any = null;
   timeoutAnimacao:any = null;
   animationClass = 'slidedown'
+  screenHeight:number = 0
+  screenWidth:number = 0;
 
   constructor() {
     this.menuItens = this.menu.getMenuItens();
   }
+
+  @HostListener('window:resize', ['$event'])
+onResize(event?:any) {
+   this.screenHeight = window.innerHeight;
+   this.screenWidth = window.innerWidth;
+}
 
   menu:Menu = new Menu([
     {name:"home", icon:"bi bi-house-door-fill", topMinScroll:0, actived: true},
@@ -29,6 +37,13 @@ export class MenuComponent {
   
   ngOnInit() {
     this.loadScrollEvent();
+
+    setInterval(
+    () => {
+      console.log(this.screenHeight, this.screenWidth);
+      
+    }, 1000
+    )
   }
 
   loadScrollEvent() {

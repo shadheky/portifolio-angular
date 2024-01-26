@@ -40,7 +40,7 @@
     background-color: #efefef;
     margin-top: 5px;
     bottom: 10px;
-   
+    animation: aparicao .3s;
 }
 
 a {
@@ -61,6 +61,12 @@ a {
     animation: slideup .5s;
 }
 
+
+.menu-open {
+    font-size: 30px;
+    color: #fff;
+    position: absolute;
+}
 
 @keyframes aparicao {
     from {
