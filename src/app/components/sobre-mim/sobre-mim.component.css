@@ -48,7 +48,7 @@ a {
 }
 
 .titulo p {
-    font-size: clamp(8px, 3vw, 18px, 20px);
+    font-size: clamp(10px, 13px, 16px);
     margin: 0;
 }
 

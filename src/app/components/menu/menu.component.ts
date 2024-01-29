@@ -18,6 +18,7 @@ export class MenuComponent {
   animationClass = 'slidedown'
   screenHeight:number = 0
   screenWidth:number = 0;
+  activedMenu:string = 'home'
 
   constructor() {
     this.menuItens = this.menu.getMenuItens();
@@ -37,13 +38,7 @@ onResize(event?:any) {
   
   ngOnInit() {
     this.loadScrollEvent();
-
-    setInterval(
-    () => {
-      console.log(this.screenHeight, this.screenWidth);
-      
-    }, 1000
-    )
+    this.activedMenu = this.menu.getCurrentActivedMenu().name;
   }
 
   loadScrollEvent() {
@@ -51,6 +46,22 @@ onResize(event?:any) {
       {
         next: () => {
           const scrollPosition = document.querySelector('html')!.scrollTop;
+          const menuAtivo = this.menu.getCurrentActivedMenu();
+          const menuASerAtivado = this.menu.getMenuItens().sort(
+            (a:any, b:any) => {
+              if(a.topMinScroll > b.topMinScroll)
+                return -1;
+      
+              if(a.topMinScroll < b.topMinScroll)
+                return 1;
+      
+              return 0;
+            }
+          ).find( (menu : any) => menu.topMinScroll <= scrollPosition );
+
+          if(menuASerAtivado.name === menuAtivo.name)
+            return
+          
           this.menu.setActivedMenuByTopMinScroll(scrollPosition);
           this.syncMenuItens();
         }
@@ -59,8 +70,12 @@ onResize(event?:any) {
   }
 
   trocarMenu(name:string) {
+      if(name === this.activedMenu)
+        return;
+
       this.menu.setMenuByName(name);
       this.syncMenuItens();
+      this.esconderMenu();
   }
 
   mostrarMenu() {
@@ -74,6 +89,9 @@ onResize(event?:any) {
   }
 
   esconderMenu() {
+    if(this.screenWidth <= 600 || this.screenHeight > this.screenWidth)
+      return
+
     this.timeoutAnimacao =  setTimeout(() => {
       this.animationClass = 'slideup'
       this.timeoutFecharMenu = setTimeout(() => {
@@ -85,6 +103,7 @@ onResize(event?:any) {
   syncMenuItens() {
     this.menuItens = this.menu.getMenuItens();
   }
+
 
 }
 
@@ -124,13 +143,15 @@ class Menu {
   }
 
   setMenuByName(name:string) {
+
     for(let elem of this.menuItens) {
       elem.actived = false;
     }
 
     for(let elem of this.menuItens) {
-      if( elem.name === name)
+      if( elem.name === name){
         elem.actived = true;
+      }
     }
   } 
 
