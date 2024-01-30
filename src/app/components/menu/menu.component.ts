@@ -25,7 +25,7 @@ export class MenuComponent {
   }
 
   @HostListener('window:resize', ['$event'])
-onResize(event?:any) {
+  onResize(event?:any) {
    this.screenHeight = window.innerHeight;
    this.screenWidth = window.innerWidth;
 }
@@ -37,8 +37,10 @@ onResize(event?:any) {
     ]);
   
   ngOnInit() {
+    this.esconderMenu();
     this.loadScrollEvent();
     this.activedMenu = this.menu.getCurrentActivedMenu().name;
+    this.onResize();
   }
 
   loadScrollEvent() {
@@ -89,8 +91,11 @@ onResize(event?:any) {
   }
 
   esconderMenu() {
-    if(this.screenWidth <= 600 || this.screenHeight > this.screenWidth)
+    if(this.screenWidth <= 600 || this.screenHeight > this.screenWidth){
+      console.log(this.screenHeight, this.screenWidth);
+      
       return
+    }
 
     this.timeoutAnimacao =  setTimeout(() => {
       this.animationClass = 'slideup'
