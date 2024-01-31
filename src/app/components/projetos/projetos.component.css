@@ -59,6 +59,12 @@ i {
     margin: 10px 0px;
 }
 
+.blank {
+    border-radius: 10px;
+    margin-bottom: 30px;
+    background-color: #cccccc81;    
+}
+
 @media (min-width:500px) {
     .projeto-img {
         width: 100% !important;
