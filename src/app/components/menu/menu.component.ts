@@ -91,9 +91,7 @@ export class MenuComponent {
   }
 
   esconderMenu() {
-    if(this.screenWidth <= 600 || this.screenHeight > this.screenWidth){
-      console.log(this.screenHeight, this.screenWidth);
-      
+    if(this.screenWidth <= 600 || this.screenHeight > this.screenWidth){      
       return
     }
 

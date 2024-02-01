@@ -17,7 +17,6 @@ export class HomeComponent {
 
     changeMenu(menu:string, event:any) {
         this.currentMenu = menu;
-        console.log(event);
     }
 
 }

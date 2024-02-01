@@ -65,9 +65,58 @@ i {
     background-color: #cccccc81;    
 }
 
+.card-carregando {
+
+}
+
+.loading {
+    width: 20px;
+    height: 20px;
+    background-color: #464545;    
+    border-radius: 10%;
+    animation: loading 0.6s infinite cubic-bezier(0.6,0.1,1,0.4);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+.loading-1 {
+    animation-delay: .1s;
+}
+
+.loading-2 {
+    animation-delay: .3s;
+}
+
+.loading-3 {
+    animation-delay: .5s;
+}
+
+.loading-wrapper {
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.title-carregado {
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.card-body {
+    height: 100%!important;
+}
+
 @media (min-width:500px) {
     .projeto-img {
         width: 100% !important;
         height: 250px !important;
+    }
+}
+
+@keyframes loading {
+    to {
+        transform: scale(1.4);
     }
 }
